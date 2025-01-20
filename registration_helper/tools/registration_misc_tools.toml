@@ -58,7 +58,7 @@ course_props = [
 
 # define the title
 #
-error_tile = "Error"
+error_title = "Error"
 
 # define the error window label
 #

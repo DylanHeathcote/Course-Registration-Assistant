@@ -104,6 +104,17 @@ def is_compatible_list(course_list):
 #
 # end of function
 
+def check_valid_input(courses):
+
+    for course in courses:
+        
+        for day in course.weekly_schedule:
+
+            if not check_valid_time(day.start_time, day.end_time):
+                
+                return False
+            
+    return True
 
 def check_valid_time(start_time, end_time):
     """
@@ -126,40 +137,48 @@ def check_valid_time(start_time, end_time):
     # it means that the course has no class on this day
     # and is thus valid
     #
-    if start_time is None and end_time is None:
+    print("here1")
+    if start_time == int(-1) and end_time == int(-1):
         return True
-
+    
+    print("here2")
     # if the start time is present but not the end time
     # the input is invalid
     #
-    if end_time is None:
+    if end_time == int(-1):
         return False
 
+    print("here3")
     # if the end time is present but not the start time
     # the input is invalid
     #
-    if start_time is None:
+    if start_time == int(-1):
         return False
     
+    print("here4")
     # if the start time or end time is less
     # then 6 am in the morning the courses day schedule
     # is not valid
     #
     if start_time < int(600) or end_time < int(600):
+        print("start time = %s" % start_time)
+        print("end time = %s" % end_time)
         return False
-
+    
+    print("here")
     # if the start time or end time is greator then
     # 8 pm in the courses day schedule is not valid
     #
     if start_time > int(2000) or end_time > int(2000):
         return False
 
+    print("here5")
     # if the start time is after the end time the
     # courses day scehdule is not valid
     #
     if start_time > end_time:
         return False
-
+    
     # exit gracefully
     #  the courses specific day schedule is valid
     #
@@ -214,7 +233,7 @@ def create_courses(course_df):
         
         course_list.append(Course(course))
         
-    return fetch_comp_combs(course_list)
+    return course_list
         
 class Course:
     """

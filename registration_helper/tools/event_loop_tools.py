@@ -28,15 +28,15 @@ time_to_row = \
 class ErrorWindow(QDialog):
     def __init__(self, error_message, fix_message, width, height):
         super().__init__()
-        self.setWindowTitle(reg_helper['err_msg_window']['error_title'])
+        self.setWindowTitle(str_hlpr['err_msg_window']['error_title'])
         self.setFixedSize(width, height)  # Set the desired size for the dialog
 
         # Create the main layout
         layout = QVBoxLayout()
 
         # Add the error icon (optional)
-        error_label = QLabel(reg_helper['err_msg_window']['error_label']) 
-        error_label.setStyleSheet(reg_helper['err_msg_window']['error_label_style'])
+        error_label = QLabel(str_hlpr['err_msg_window']['error_label']) 
+        error_label.setStyleSheet(str_hlpr['err_msg_window']['error_label_style'])
         layout.addWidget(error_label)
 
         # Add the error message
@@ -191,13 +191,20 @@ class MainWindow(QMainWindow):
 
         data_frame = dft.cleanup_data_frame(data_frame)
         
-        comp_scheds = ct.create_courses(data_frame)
+        courses = ct.create_courses(data_frame)
 
-        if not self.create_results_window(comp_scheds):
-
+        if not ct.check_valid_input(courses):
+            
+            show_error(str_hlpr['err_msg_window']['err_course_creation'],
+                       str_hlpr['err_msg_window']['err_course_creation_description'],
+                       800,
+                       200)
+            
             return False
-
-        return True
+        
+        comp_scheds = ct.fetch_comp_combs(courses)
+        
+        self.create_results_window(comp_scheds)
     
     def load_file(self):
 
@@ -216,27 +223,25 @@ class MainWindow(QMainWindow):
 
         data_frame = dft.combine_data_frame_list(data_frames)
         
-        courses = dft.cleanup_data_frame(data_frame)
+        data_frame = dft.cleanup_data_frame(data_frame)
 
-        comp_scheds = ct.create_courses(courses)
+        courses = ct.create_courses(data_frame)
 
-        if not self.create_results_window(comp_scheds):
-            
-            return False
+        if not ct.check_valid_input(courses):
 
-        return True
-    
-    def create_results_window(self, comp_scheds):
-
-        if not comp_scheds: 
-            
             show_error(str_hlpr['err_msg_window']['err_course_creation'],
                        str_hlpr['err_msg_window']['err_course_creation_description'],
                        800,
                        200)
             
-            return False  
+            return False
         
+        comp_scheds = ct.fetch_comp_combs(courses)
+        
+        return self.create_results_window(comp_scheds)
+
+    def create_results_window(self, comp_scheds):
+    
         self.results_window = ResultsWindow()
         self.results_window.transfer_info(comp_scheds)
         self.results_window.setWindowLayout()

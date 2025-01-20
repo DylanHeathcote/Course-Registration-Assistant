@@ -1,0 +1,119 @@
+#!/usr/bin/env python
+
+[main_window]
+
+#===============================================================================
+#
+# define main window helper objects
+#
+#===============================================================================
+
+file_hndlr_str = "Load From File"
+
+eval_hndlr_str = "Compute compatible scehdules from table"
+
+grid_col_headers = [
+"CRN",
+"Course\nname",
+"Monday\nstart\ntime",
+"Monday\nend\ntime",
+"Tuesday\nstart\ntime",
+"Tuesday\nend\ntime",
+"Wednesday\nstart\ntime",
+"Wednesday\nend\ntime",
+"Thursday\nstart\ntime",
+"Thursday\nend\ntime",
+"Friday\nstart\ntime",
+"Friday\nend\ntime",
+"Priority"]
+
+[course_props]
+
+course_props = [
+"CRN",
+"class_name",
+"Monday_start",
+"Monday_end",
+"Tuesday_start",
+"Tuesday_end",
+"Wednesday_start",
+"Wednesday_end"
+,"Thursday_start",
+"Thursday_end",
+"Friday_start",
+"Friday_end",
+"Priority"]
+
+[err_msg_window]
+
+#==============================================================================
+#
+# define error message helper objects
+#
+#==============================================================================
+
+#------------------------------------------------------------------------------
+# set up error window helper strings below
+#
+
+# define the title
+#
+error_tile = "Error"
+
+# define the error window label
+#
+error_label = "\u26A0\ufe0f Critical Error"
+
+# defien the error label's style
+#
+error_label_style = "font-size: 24px; color: red;"
+
+# define the error message style
+#
+error_main_msg_style = "font-size: 18px;"
+
+# define the informative message style
+#
+error_info_msg_style = "font-size: 16px;"
+
+#------------------------------------------------------------------------------
+# unique error messages below
+#
+
+#---------------------------------------
+# set up course creation failure message
+#
+err_course_creation = "Course Creation Failed"
+
+# set up the course creation failutre description
+#
+err_course_creation_description = """
+ensure rows with course information entered has the following:
+1. A CRN
+2. ensure both a start/stop time or no start/stop time's for each of the course's day's
+  2.1. ensure start/end times are in military format
+  2.2. all start/stop time's entered are within 0600 and 2000 hours
+"""
+
+err_ok_button = "OK"
+
+[results_window]
+
+#===============================================================================
+#
+# define gui results window helper objects
+#
+#===============================================================================
+
+# define results window title
+#
+results_window_title = "Results"
+
+# define list of string to depict days 
+#
+results_window_header = [
+"Monday",
+"Tuesday",
+"Wednesday",
+"Thursday",
+"Friday"]

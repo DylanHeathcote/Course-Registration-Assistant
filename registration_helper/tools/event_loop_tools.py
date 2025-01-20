@@ -5,9 +5,8 @@ import os
 from itertools import product
 import toml
 from PyQt6.QtCore import Qt
-import course_tools as ct
-import data_frame_tools as dft
-
+import tools.course_tools as ct
+import tools.data_frame_tools as dft
 
 # Get the directory of the current script
 tool_dir = os.path.dirname(os.path.abspath(__file__))

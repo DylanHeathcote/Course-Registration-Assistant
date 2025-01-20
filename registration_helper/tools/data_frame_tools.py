@@ -5,7 +5,7 @@ import pandera as pa
 import copy
 import sys
 import os
-import course_tools as ct
+import tools.course_tools as ct
 import toml
 
 tool_dir = os.path.dirname(os.path.abspath(__file__))

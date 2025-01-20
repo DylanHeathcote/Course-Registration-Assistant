@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 import sys
-import tools.data_frame_tools as dft
-import tools.course_tools as ct
-import tools.cmdl_parser_tools as cp
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+import tools.data_frame_tools as dft
+import tools.course_tools as ct
+import tools.cmdl_parser_tools as cp
 
 def pretty_print(comp_scheds):
 
